@@ -1,4 +1,4 @@
-node 'local-win-iis'{
+node 'local-win-iis.localdomain'{
 include chocolatey
 exec { 'save_dir':
         path => 'C:/Windows/System32',
