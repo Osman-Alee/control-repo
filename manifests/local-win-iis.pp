@@ -70,25 +70,25 @@ acl { 'c:\\inetpub\\wwwroot\\OneLinkServicev2':
 
 # Configure IIS
 
-iis_application_pool { '.NET v2.0':
+iis_application_pool { 'dot NET v2.0':
   ensure                  => 'present',
   state                   => 'started',
   managed_pipeline_mode   => 'Integrated',
   managed_runtime_version => 'v2.0',
 }
-iis_application_pool { '.NET v2.0 Classic':
+iis_application_pool { 'dot NET v2.0 Classic':
   ensure                  => 'present',
   state                   => 'started',
   managed_pipeline_mode   => 'Classic',
   managed_runtime_version => 'v2.0',
 }
-iis_application_pool { '.NET v4.5':
+iis_application_pool { 'dot NET v4.5':
   ensure                  => 'present',
   state                   => 'started',
   managed_pipeline_mode   => 'Integrated',
   managed_runtime_version => 'v4.0',
 }
-iis_application_pool { '.NET v4.5 Classic':
+iis_application_pool { 'dot NET v4.5 Classic':
   ensure                  => 'present',
   state                   => 'started',
   managed_pipeline_mode   => 'Classic',
