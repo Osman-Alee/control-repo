@@ -36,11 +36,9 @@ sslcertificate { 'Install-PFX-Certificate' :
   }
 
 # Create Directories
-C:\inetpub\\OneLinkService
 file { 'c:\\inetpub\\wwwroot\\OneLinkService':
   ensure => 'directory'
 }
-
 file { 'c:\\inetpub\\wwwroot\\OneLinkServiceSite2':
   ensure => 'directory'
 }
@@ -52,18 +50,17 @@ file { 'c:\\inetpub\\wwwroot\\OneLinkServicev2':
 
 acl { 'c:\\inetpub\\wwwroot\\OneLinkService':
   permissions => [
-    {'identity' => 'System', 'rights' => ['read', 'execute']},
+    {'identity' => 'System', 'rights' => ['read', 'write', 'execute']},
   ],
 }
-
 acl { 'c:\\inetpub\\wwwroot\\OneLinkServiceSite2':
   permissions => [
-    {'identity' => 'System', 'rights' => ['read', 'execute']},
+    {'identity' => 'System', 'rights' => ['read', 'write', 'execute']},
   ],
 }
 acl { 'c:\\inetpub\\wwwroot\\OneLinkServicev2':
   permissions => [
-    {'identity' => 'System', 'rights' => ['read', 'execute']},
+    {'identity' => 'System', 'rights' => ['read', 'write', 'execute']},
   ],
 }
 
