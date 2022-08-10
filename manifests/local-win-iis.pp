@@ -33,7 +33,7 @@ file { 'c:/Users/Administrator/cert_for_onelink.pfx':
 }
 file { 'c:/Users/Administrator/OneLink-05042022-ssls.pfx':
      ensure => 'file',
-     source => 'puppet:///modules/sslcertificate/OneLink-05042022-ssls.pfx',
+     source => 'puppet:///modules/sslcertificate/files/OneLink-05042022-ssls.pfx',
 #     source_permissions => 'ignore',
      owner  => 'administrator',
      group  => ['administrators'],
