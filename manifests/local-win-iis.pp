@@ -126,14 +126,14 @@ iis_site { 'OneLink':
   enabledprotocols => 'https',
   bindings         => [
     {
-      'bindinginformation'   => '*:443:',
+      'bindinginformation'   => '192.168.59.20:443:',
       'protocol'             => 'https',
       'certificatehash'      => '03DB53F2B1D2ECDD241041EB2B5A898CF9E49D84',
       'certificatestorename' => 'My',
      'sslflags'              => 0,
     },
     {
-      'bindinginformation' => '*:80:',
+      'bindinginformation' => '192.168.59.20:80:',
       'protocol'           => 'http',
     },
   ],
@@ -146,14 +146,14 @@ iis_site { 'OneLinkSite2':
   enabledprotocols => 'https',
   bindings         => [
     {
-      'bindinginformation'   => '*:8443:',
+      'bindinginformation'   => '192.168.59.21:8443:',
       'protocol'             => 'https',
       'certificatehash'      => '03DB53F2B1D2ECDD241041EB2B5A898CF9E49D84',
       'certificatestorename' => 'My',
       'sslflags'             => 0,
     },
     {
-      'bindinginformation' => '*:8080:',
+      'bindinginformation' => '192.168.59.21:8080:',
       'protocol'           => 'http',
     },
   ],
@@ -166,14 +166,14 @@ iis_site { 'OneLinkv2':
   enabledprotocols => 'https',
   bindings         => [
     {
-      'bindinginformation'   => '*:1443:',
+      'bindinginformation'   => '192.168.59.20:1443:',
       'protocol'             => 'https',
       'certificatehash'      => '03DB53F2B1D2ECDD241041EB2B5A898CF9E49D84',
       'certificatestorename' => 'My',
      'sslflags'             => 0,
     },
     {
-        'bindinginformation' => '*:180:',
+        'bindinginformation' => '192.168.59.20:180:',
         'protocol'           => 'http',
     },
   ],
