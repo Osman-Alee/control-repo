@@ -23,28 +23,14 @@ iis_site {'Default Web Site':
    require   => Iis_feature['Web-WebServer'],
 }
 #     Upload SSL certificate from server to agent
-file { 'c:/Users/Administrator/cert_for_onelink.pfx':
-     ensure => 'file',
-     source => 'puppet:///modules/sslcertificate/cert_for_onelink.pfx',
-#     source_permissions => 'ignore',
-     owner  => 'administrator',
-     group  => ['administrators'],
-     mode   => '1777',
-}
 file { 'c:/Users/Administrator/OneLink-05042022-ssls.pfx':
      ensure => 'present',
-     source => "puppet:///modules/sslcertificate/files/OneLink-05042022-ssls.pfx",
+     source => "puppet:///modules/sslcertificate/OneLink-05042022-ssls.pfx",
      owner  => 'administrator',
      group  => ['administrators'],
      mode   => '1777',
 }
 #     Installing certificate
-sslcertificate { 'Install-PFX-Certificate' :
-  name       => 'cert_for_onelink.pfx',
-  password   => '0504202222024050',
-  location   => 'c:\Users\Administrator',
-  thumbprint => '03DB53F2B1D2ECDD241041EB2B5A898CF9E49D84',
-  }
   sslcertificate { 'Install-PFX-Certificate-for-onelink' :
   name       => 'OneLink-05042022-ssls.pfx',
   password   => '0504202222024050',
@@ -213,14 +199,14 @@ iis_site { 'testsite':
   enabledprotocols => 'https',
   bindings         => [
     {
-      'bindinginformation'   => '192.168.59.20:1443:',
+      'bindinginformation'   => '192.168.59.20:4443:',
       'protocol'             => 'https',
       'certificatehash'      => '03DB53F2B1D2ECDD241041EB2B5A898CF9E49D84',
       'certificatestorename' => 'My',
      'sslflags'             => 0,
     },
     {
-        'bindinginformation' => '192.168.59.20:180:',
+        'bindinginformation' => '192.168.59.20:1800:',
         'protocol'           => 'http',
     },
   ],
