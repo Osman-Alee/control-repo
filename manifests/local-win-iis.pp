@@ -12,11 +12,15 @@ exec { 'save_dir':
         provider  => 'powershell',
   }
 ################################################## Below code manages IIS ########################################
+$iis_features = ['Web-WebServer','Web-Scripting-Tools']
+iis_feature { $iis_features:
+  ensure => 'present',
+}
 #     Removing default site
 iis_site {'Default Web Site':
    ensure   => 'absent',
    applicationpool => 'DefaultAppPool',
-   require   => iis_feature['Web-WebServer'],# needs to remove this line
+   require   => iis_feature['Web-WebServer'],
 }
 #     Upload SSL certificate from server to agent
 file { 'c:/Users/Administrator/cert_for_onelink.pfx':
