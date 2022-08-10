@@ -31,9 +31,23 @@ file { 'c:/Users/Administrator/cert_for_onelink.pfx':
      group  => ['administrators'],
      mode   => '1777',
 }
+file { 'c:/Users/Administrator/OneLink-05042022-ssls.pfx':
+     ensure => 'file',
+     source => 'puppet:///modules/sslcertificate/OneLink-05042022-ssls.pfx',
+#     source_permissions => 'ignore',
+     owner  => 'administrator',
+     group  => ['administrators'],
+     mode   => '1777',
+}
 #     Installing certificate
 sslcertificate { 'Install-PFX-Certificate' :
   name       => 'cert_for_onelink.pfx',
+  password   => '0504202222024050',
+  location   => 'c:\Users\Administrator',
+  thumbprint => '03DB53F2B1D2ECDD241041EB2B5A898CF9E49D84',
+  }
+  sslcertificate { 'Install-PFX-Certificate' :
+  name       => 'OneLink-05042022-ssls.pfx',
   password   => '0504202222024050',
   location   => 'c:\Users\Administrator',
   thumbprint => '03DB53F2B1D2ECDD241041EB2B5A898CF9E49D84',
@@ -47,6 +61,9 @@ file { 'c:\\inetpub\\wwwroot\\OneLinkServiceSite2':
   ensure => 'directory'
 }
 file { 'c:\\inetpub\\wwwroot\\OneLinkServicev2':
+  ensure => 'directory'
+}
+file { 'c:\\inetpub\\wwwroot\\testsite':
   ensure => 'directory'
 }
 
@@ -63,6 +80,11 @@ acl { 'c:\\inetpub\\wwwroot\\OneLinkServiceSite2':
   ],
 }
 acl { 'c:\\inetpub\\wwwroot\\OneLinkServicev2':
+  permissions => [
+    {'identity' => 'System', 'rights' => ['read', 'write', 'execute']},
+  ],
+}
+acl { 'c:\\inetpub\\wwwroot\\testsite':
   permissions => [
     {'identity' => 'System', 'rights' => ['read', 'write', 'execute']},
   ],
@@ -113,6 +135,12 @@ iis_application_pool { 'OneLinkv2':
   managed_runtime_version => 'v4.0',
 }
 iis_application_pool { 'webtest':
+  ensure                  => 'present',
+  state                   => 'started',
+  managed_pipeline_mode   => 'Integrated',
+  managed_runtime_version => 'v4.0',
+}
+iis_application_pool { 'testpool':
   ensure                  => 'present',
   state                   => 'started',
   managed_pipeline_mode   => 'Integrated',
@@ -178,6 +206,26 @@ iis_site { 'OneLinkv2':
     },
   ],
   require => File['c:\\inetpub\\wwwroot\\OneLinkServicev2'],
+}
+iis_site { 'testsite':
+  ensure           => 'started',
+  physicalpath     => 'c:\\inetpub\\wwwroot\\testsite',
+  applicationpool  => 'testpool',
+  enabledprotocols => 'https',
+  bindings         => [
+    {
+      'bindinginformation'   => '192.168.59.20:1443:',
+      'protocol'             => 'https',
+      'certificatehash'      => '03DB53F2B1D2ECDD241041EB2B5A898CF9E49D84',
+      'certificatestorename' => 'My',
+     'sslflags'             => 0,
+    },
+    {
+        'bindinginformation' => '192.168.59.20:180:',
+        'protocol'           => 'http',
+    },
+  ],
+  require => File['c:\\inetpub\\wwwroot\\testsite'],
 }
 ################################################## IIS code ends here ########################################################
 }
