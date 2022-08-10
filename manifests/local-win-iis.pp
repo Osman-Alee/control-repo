@@ -20,7 +20,7 @@ iis_feature { $iis_features:
 iis_site {'Default Web Site':
    ensure   => 'absent',
    applicationpool => 'DefaultAppPool',
-   require   => iis_feature['Web-WebServer'],
+   require   => Iis_feature['Web-WebServer'],
 }
 #     Upload SSL certificate from server to agent
 file { 'c:/Users/Administrator/cert_for_onelink.pfx':
