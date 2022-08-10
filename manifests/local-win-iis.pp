@@ -199,14 +199,14 @@ iis_site { 'testsite':
   enabledprotocols => 'https',
   bindings         => [
     {
-      'bindinginformation'   => '192.168.59.20:4443:',
+      'bindinginformation'   => '192.168.159.155:4443:',
       'protocol'             => 'https',
       'certificatehash'      => '03DB53F2B1D2ECDD241041EB2B5A898CF9E49D84',
       'certificatestorename' => 'My',
      'sslflags'             => 0,
     },
     {
-        'bindinginformation' => '192.168.59.20:1800:',
+        'bindinginformation' => '192.168.159.155:1800:',
         'protocol'           => 'http',
     },
   ],
