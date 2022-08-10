@@ -16,7 +16,7 @@ exec { 'save_dir':
 iis_site {'Default Web Site':
    ensure   => 'absent',
    applicationpool => 'DefaultAppPool',
-   require   => iis_feature['Web-WebServer'],
+   require   => iis_feature['Web-WebServer'],# needs to remove this line
 }
 #     Upload SSL certificate from server to agent
 file { 'c:/Users/Administrator/cert_for_onelink.pfx':
