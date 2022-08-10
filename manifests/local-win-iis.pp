@@ -46,7 +46,7 @@ sslcertificate { 'Install-PFX-Certificate' :
   location   => 'c:\Users\Administrator',
   thumbprint => '03DB53F2B1D2ECDD241041EB2B5A898CF9E49D84',
   }
-  sslcertificate { 'Install-PFX-Certificate' :
+  sslcertificate { 'Install-PFX-Certificate-for-onelink' :
   name       => 'OneLink-05042022-ssls.pfx',
   password   => '0504202222024050',
   location   => 'c:\Users\Administrator',
