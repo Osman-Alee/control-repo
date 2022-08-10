@@ -25,13 +25,13 @@ iis_site {'Default Web Site':
 #     Upload SSL certificate from server to agent
 file { 'c:/Users/Administrator/OneLink-05042022-ssls.pfx':
      ensure => 'present',
-     source => "puppet:///modules/sslcertificate/OneLink-05042022-ssls.pfx",
+     source => 'puppet:///modules/sslcertificate/OneLink-05042022-ssls.pfx',
      owner  => 'administrator',
      group  => ['administrators'],
      mode   => '1777',
 }
 #     Installing certificate
-  sslcertificate { 'Install-PFX-Certificate-for-onelink' :
+  sslcertificate { 'Install-PFX-Certificate' :
   name       => 'OneLink-05042022-ssls.pfx',
   password   => '0504202222024050',
   location   => 'c:\Users\Administrator',
